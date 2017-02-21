@@ -1,0 +1,69 @@
+name: yts-api
+version: 0.1.0.0
+cabal-version: >=1.10
+build-type: Simple
+license: BSD3
+license-file: LICENSE
+copyright: 2017 Piotr Bogdan
+maintainer: ppbogdan@gmail.com
+homepage: https://github.com/pbogdan/yts-api#readme
+synopsis: Haskell client for yts.ag API.
+description: Haskell client for yts.ag API.
+category: Web
+author: Piotr Bogdan
+extra-source-files:
+    README.md
+
+source-repository head
+    type: git
+    location: https://github.com/pbogdan/yts-api
+
+library
+    exposed-modules:
+        Control.Monad.Trans.Yts
+        Web.Yts.Api
+        Web.Yts.Api.Example
+        Web.Yts.Api.Movies
+        Web.Yts.Api.Network
+        Web.Yts.Api.Pager
+        Web.Yts.Api.Pager.Types
+        Web.Yts.Api.Request
+        Web.Yts.Api.Response
+    build-depends:
+        base >=4.7 && <5,
+        protolude >=0.1.6 && <0.2,
+        aeson >=1.0.2.1 && <1.1,
+        bytestring >=0.10.8.1 && <0.11,
+        text >=1.2.2.1 && <1.3,
+        time >=1.6.0.1 && <1.7,
+        lens >=4.15.1 && <4.16,
+        http-types >=0.9.1 && <0.10,
+        http-client >=0.5.5 && <0.6,
+        http-client-tls >=0.3.3.1 && <0.4,
+        safe-exceptions >=0.1.4.0 && <0.2,
+        exceptions >=0.8.3 && <0.9,
+        transformers >=0.5.2.0 && <0.6,
+        pipes >=4.3.2 && <4.4
+    default-language: Haskell2010
+    default-extensions: OverloadedStrings NoImplicitPrelude
+    hs-source-dirs: src
+    ghc-options: -Wall
+
+test-suite yts-api-test
+    type: exitcode-stdio-1.0
+    main-is: Spec.hs
+    build-depends:
+        base >=4.9.1.0 && <4.10,
+        aeson >=1.0.2.1 && <1.1,
+        hspec >=2.3.2 && <2.4,
+        protolude >=0.1.10 && <0.2,
+        quickcheck-instances >=0.3.12 && <0.4,
+        QuickCheck >=2.9.2 && <2.10,
+        yts-api >=0.1.0.0 && <0.2,
+        time >=1.6.0.1 && <1.7
+    default-language: Haskell2010
+    default-extensions: OverloadedStrings NoImplicitPrelude
+    hs-source-dirs: test
+    other-modules:
+        TypesSpec
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N -Wall
